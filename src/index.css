@@ -14,11 +14,7 @@
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
   --primary: #000000;
-  --primary-1: #1B6B23;
-  --primary-2: #FA9C28;
   --secondary: #ABE188;
-  --secondary-1: #42BFDD;
-  --secondary-2: #F8FBFF;
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
@@ -40,6 +36,14 @@
 }
 
 
+@theme {
+  --color-primary-black: #000000;
+  --color-primary-green: #1B6B23;
+  --color-primary-orange: #FA9C28;
+  --color-secondary-green: #ABE188;
+  --color-secondary-blue: #42BFDD;
+  --color-secondary-white: #F8FBFF;
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -56,8 +60,6 @@
       rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
   }
 
-  
-
   #social .button-icon {
     filter: invert(1) brightness(2);
   }
@@ -68,15 +70,30 @@
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  border-inline: 1px solid var(--border);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'Juman';
+  src: url('./assets/fonts/alfont_com_AlFont_com_juman-normal.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Juman';
+  src: url('./assets/fonts/alfont_com_AlFont_com_juman-bold-.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 body {
   margin: 0;
+  background-color: #fff;
+  font-family: 'Juman', sans-serif;
 }
 
 h1,
@@ -90,20 +107,24 @@ h1 {
   font-size: 56px;
   letter-spacing: -1.68px;
   margin: 32px 0;
+
   @media (max-width: 1024px) {
     font-size: 36px;
     margin: 20px 0;
   }
 }
+
 h2 {
   font-size: 24px;
   line-height: 118%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
+
   @media (max-width: 1024px) {
     font-size: 20px;
   }
 }
+
 p {
   margin: 0;
 }
