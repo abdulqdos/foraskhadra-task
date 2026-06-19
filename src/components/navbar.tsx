@@ -79,10 +79,10 @@ function DesktopDropdown({
             key={item.label}
             href={item.href ?? "#"}
             role="menuitem"
-            className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-primary-black transition-colors duration-150 hover:bg-secondary-green/40 hover:text-primary-green"
+            className="flex items-center gap-4 rounded-xl px-3 py-2 text-sm text-primary-black transition-colors duration-150 hover:bg-secondary-green/40 hover:text-primary-green"
           >
-            {item.icon}
-            {item.label}
+            <span>{item.icon}</span>
+            <span>{item.label}</span>
           </a>
         ))}
       </div>
@@ -144,7 +144,7 @@ export function Navbar() {
                   key={link.label}
                   label={link.label}
                   items={link.dropdown}
-                  withArrow={false}
+                  withArrow={true}
                 />
               ) : (
                 <a
@@ -190,19 +190,20 @@ export function Navbar() {
           <div className="space-y-1 border-t border-border py-3">
             {navLinks.map((link) =>
               link.dropdown ? (
-                <div key={link.label}>
+                <div key={link.label} className="flex flex-col items-center">
+
                   <button
                     type="button"
                     onClick={() => toggleSection(link.label)}
                     aria-expanded={mobileSection === link.label}
-                    className="flex w-full items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-medium text-primary-black transition-colors hover:bg-secondary-green/40 hover:text-primary-green"
-                  >
+                    className="flex w-full items-center justify-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-medium text-primary-black transition-colors hover:bg-secondary-green/40 hover:text-primary-green"                  >
                     <span>{link.label}</span>
                     <FiChevronDown
                       className={`size-4 transition-transform duration-200 ${mobileSection === link.label ? "rotate-180" : ""
                         }`}
                     />
                   </button>
+
                   <div
                     className={`overflow-hidden transition-all duration-300 ${mobileSection === link.label
                       ? "max-h-96 opacity-100"
@@ -215,7 +216,7 @@ export function Navbar() {
                           key={item.label}
                           href={item.href ?? "#"}
                           onClick={() => setMobileOpen(false)}
-                          className="block rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary-green/40 hover:text-primary-green"
+                          className="block rounded-lg px-3 py-2 text-sm text-primary-black transition-colors hover:bg-secondary-green/40 hover:text-primary-green"
                         >
                           {item.label}
                         </a>
@@ -266,6 +267,7 @@ export function Navbar() {
   )
 }
 
+
 function MobileGroup({
   title,
   icon,
@@ -277,24 +279,44 @@ function MobileGroup({
   items: DropdownItem[]
   onSelect: () => void
 }) {
+  const [open, setOpen] = useState(false)
+
   return (
-    <div className="px-1">
-      <p className="flex items-center gap-2 px-2.5 pb-1 text-xs font-semibold text-primary-green">
-        {icon}
-        {title}
-      </p>
-      <div className="flex flex-wrap gap-2 px-2">
-        {items.map((item) => (
-          <a
-            key={item.label}
-            href={item.href ?? "#"}
-            onClick={onSelect}
-            className="flex items-center gap-2 rounded-lg border border-border px-3 py-1.5 text-sm text-primary-black transition-colors hover:border-primary-green hover:bg-secondary-green/40 hover:text-primary-green"
-          >
-            {item.icon}
-            {item.label}
-          </a>
-        ))}
+    <div>
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-medium text-primary-black transition-colors hover:bg-secondary-green/40 hover:text-primary-green"
+      >
+        <span className="flex items-center gap-2">
+          {icon}
+          {title}
+        </span>
+
+        <FiChevronDown
+          className={`size-4 transition-transform duration-200 ${open ? "rotate-180" : ""
+            }`}
+        />
+      </button>
+
+      <div
+        className={`overflow-hidden transition-all duration-300 ${open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}
+      >
+        <div className="space-y-1 ps-4 pt-1">
+          {items.map((item) => (
+            <a
+              key={item.label}
+              href={item.href ?? "#"}
+              onClick={onSelect}
+              className="block rounded-lg px-3 py-2 text-sm text-primary-black transition-colors hover:bg-secondary-green/40 hover:text-primary-green"
+            >
+              {item.icon && <span className="me-2">{item.icon}</span>}
+              {item.label}
+
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   )
