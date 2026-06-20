@@ -69,7 +69,7 @@ function DesktopDropdown({
       </button>
       <div
         role="menu"
-        className={`absolute start-0 z-50 mt-2 min-w-44 origin-top rounded-2xl border border-border bg-card p-1.5 shadow-lg transition-all duration-200 ${open
+        className={`absolute start-0 z-50 mt-2 min-w-44 origin-top rounded-2xl border border-border bg-white p-1.5 shadow-lg transition-all duration-200 ${open
           ? "visible translate-y-0 scale-100 opacity-100"
           : "invisible -translate-y-1 scale-95 opacity-0"
           }`}
