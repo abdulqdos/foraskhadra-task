@@ -9,7 +9,11 @@ const opportunityTypes = [
   { label: "الزمالات", key: "fellowships" },
 ]
 
-export function OpportunitySearch() {
+interface OpportunitySearchProps {
+  onSearch: (name: string, country: string, types: string[]) => void
+}
+
+export function OpportunitySearch({ onSearch }: OpportunitySearchProps) {
   const [name, setName] = useState("")
   const [country, setCountry] = useState("")
   const [selectedTypes, setSelectedTypes] = useState<string[]>([])
@@ -33,7 +37,7 @@ export function OpportunitySearch() {
   }
 
   function handleSearch() {
-    console.log({ name, country, selectedTypes })
+    onSearch(name, country, selectedTypes)
   }
 
   const selectedLabels = selectedTypes.length
@@ -41,7 +45,7 @@ export function OpportunitySearch() {
     : "اختر النوع"
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-6">
+    <section className="relative z-50 mx-auto max-w-7xl px-6 py-6 pb-3">
       <div className="rounded-2xl border border-border bg-card/95 p-4 shadow-md backdrop-blur">
         <div className="flex flex-wrap items-end gap-3">
           <div className="min-w-0 flex-1">
@@ -78,13 +82,12 @@ export function OpportunitySearch() {
             >
               <span className="truncate">{selectedLabels}</span>
               <FiChevronDown
-                className={`size-4 transition-transform duration-200 ${
-                  isOpen ? "rotate-180" : ""
-                }`}
+                className={`size-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
+                  }`}
               />
             </button>
             {isOpen && (
-              <div className="absolute left-0 z-10 mt-1 w-full rounded-xl border border-border bg-white shadow-lg">
+              <div className="absolute left-0 z-99 mt-1 w-full rounded-xl border border-border bg-white shadow-lg">
                 {opportunityTypes.map((type) => (
                   <label
                     key={type.key}
@@ -110,7 +113,7 @@ export function OpportunitySearch() {
           >
             <FiSearch className="size-4" />
             بحث
-          </button>         
+          </button>
         </div>
       </div>
     </section>
