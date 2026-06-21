@@ -1,5 +1,23 @@
 # React + TypeScript + Vite
 
+## Run the Project
+
+Follow these steps to run the project locally:
+
+1. **Install dependencies** – Run the following command to install all required packages:
+   ```sh
+   bun install
+   ```
+
+2. **Start the development server** – Run the command below to launch the dev server with hot module replacement:
+   ```sh
+   bun run dev
+   ```
+
+3. **Open the app** – The server will start at `http://localhost:5173` by default. Open this URL in your browser.
+
+> **Note:** Make sure you have [Bun](https://bun.sh) installed on your machine before running these commands.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
